@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
+
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+<p>
+  <strong>Title:</strong>
+  <%= @drop.title %>
+</p>
+
+<div style="width:400px; height:auto">
+<%= link_to image_tag(@drop.image, style:'width:100%') %>
+</div>
+
+<div style="width:400px; height:400px">
+<%= link_to image_tag(@drop.thumbnail, style:'width:100%;height:auto') %>
+</div>
+<div style="width:400px; height:400px">
+<%= video_tag(url_for(@drop.clip), style:'width:100%;height:auto', controls: '') %>
+</div>
+
+
+ <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="640"
+    height="264"
+    poster="<%= url_for(@drop.thumbnail) %>"
+    data-setup="{}"
+  >
+    <source src="<%= url_for(@drop.clip) %>" type="video/mp4" %>
+   
+  </video>
+
+<%=  link_to 'View file', @drop.file  %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @drop.description %>
+</p>
+
+<%= link_to 'Edit', edit_drop_path(@drop) %> |
+<%= link_to 'Back', drops_path %>
+
+ <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
